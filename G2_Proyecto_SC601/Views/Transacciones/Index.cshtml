@@ -1,0 +1,60 @@
+﻿@model IEnumerable<G2_Proyecto_SC601.Models.Transaccione>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Lista de Transacciones</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">+ Agregar transacción</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Monto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lenguaje)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MetodoPago)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Moneda)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Monto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente.Cedula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lenguaje.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MetodoPago.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Moneda.Id)
+            </td>
+            <td>
+                    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                    <a class="btn btn-success" asp-action="Details" asp-route-id="@item.Id">Ver Datos</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
